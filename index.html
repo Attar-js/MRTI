@@ -45,6 +45,54 @@
         .high { background-color: #F97316; }
         .medium { background-color: #FACC15; }
         .low { background-color: #84CC16; }
+
+        /* ==== ADDED: styles for anggota navbar & cards ==== */
+        .members-nav {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
+            border-top: 1px solid rgba(226,232,240,0.9);
+            border-bottom: 1px solid rgba(226,232,240,0.9);
+            background: rgba(255,255,255,0.9);
+        }
+        .members-nav a {
+            display: inline-block;
+            padding: 0.6rem 1rem;
+            margin: 0.25rem;
+            border-radius: 0.5rem;
+            color: #374151;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color .15s, color .15s, transform .12s;
+        }
+        .members-nav a:hover {
+            background-color: #EEF2FF;
+            color: #4338CA;
+            transform: translateY(-2px);
+        }
+        .members-nav a.active {
+            background-color: #4338CA;
+            color: #FFFFFF;
+        }
+        .member-card {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        .member-badge {
+            width: 64px;
+            height: 64px;
+            border-radius: 9999px;
+            background-color: #E0E7FF;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #4338CA;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .member-meta small { color: #6B7280; display:block; }
     </style>
 </head>
 <body class="antialiased">
@@ -62,13 +110,123 @@
                         <a href="#case-study" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600">Studi Kasus</a>
                         <a href="#benefits" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600">Manfaat</a>
                         <a href="#resources" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600">Sumber</a>
++                       <a href="#members" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600">Anggota</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
 
+    <!-- Secondary horizontal navbar for anggota (7 orang) -->
+    <div class="members-nav sticky top-16 z-40">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-2">
+                <a href="#member-1" class="nav-link">Anggota 1</a>
+                <a href="#member-2" class="nav-link">Anggota 2</a>
+                <a href="#member-3" class="nav-link">Anggota 3</a>
+                <a href="#member-4" class="nav-link">Anggota 4</a>
+                <a href="#member-5" class="nav-link">Anggota 5</a>
+                <a href="#member-6" class="nav-link">Anggota 6</a>
+                <a href="#member-7" class="nav-link">Anggota 7</a>
+            </div>
+        </nav>
+    </div>
+
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+        <!-- Section: Anggota Kelompok -->
+        <section id="members" class="scroll-mt-20 space-y-8 mb-16">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Anggota Kelompok</h2>
+                <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-600">Klik nama untuk melihat detail singkat tiap anggota.</p>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Member 1 -->
+                <div id="member-1" class="bg-white p-6 rounded-lg shadow-md border">
+                    <div class="member-card">
+                        <div class="member-badge">A1</div>
+                        <div class="member-meta">
+                            <h4 class="text-lg font-semibold">Nama Anggota 1</h4>
+                            <small>Peran / NIM / Keterangan singkat</small>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-gray-600">Deskripsi singkat atau kontribusi dalam proyek.</p>
+                </div>
+
+                <!-- Member 2 -->
+                <div id="member-2" class="bg-white p-6 rounded-lg shadow-md border">
+                    <div class="member-card">
+                        <div class="member-badge">A2</div>
+                        <div class="member-meta">
+                            <h4 class="text-lg font-semibold">Nama Anggota 2</h4>
+                            <small>Peran / NIM / Keterangan singkat</small>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-gray-600">Deskripsi singkat atau kontribusi dalam proyek.</p>
+                </div>
+
+                <!-- Member 3 -->
+                <div id="member-3" class="bg-white p-6 rounded-lg shadow-md border">
+                    <div class="member-card">
+                        <div class="member-badge">A3</div>
+                        <div class="member-meta">
+                            <h4 class="text-lg font-semibold">Nama Anggota 3</h4>
+                            <small>Peran / NIM / Keterangan singkat</small>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-gray-600">Deskripsi singkat atau kontribusi dalam proyek.</p>
+                </div>
+
+                <!-- Member 4 -->
+                <div id="member-4" class="bg-white p-6 rounded-lg shadow-md border">
+                    <div class="member-card">
+                        <div class="member-badge">A4</div>
+                        <div class="member-meta">
+                            <h4 class="text-lg font-semibold">Nama Anggota 4</h4>
+                            <small>Peran / NIM / Keterangan singkat</small>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-gray-600">Deskripsi singkat atau kontribusi dalam proyek.</p>
+                </div>
+
+                <!-- Member 5 -->
+                <div id="member-5" class="bg-white p-6 rounded-lg shadow-md border">
+                    <div class="member-card">
+                        <div class="member-badge">A5</div>
+                        <div class="member-meta">
+                            <h4 class="text-lg font-semibold">Nama Anggota 5</h4>
+                            <small>Peran / NIM / Keterangan singkat</small>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-gray-600">Deskripsi singkat atau kontribusi dalam proyek.</p>
+                </div>
+
+                <!-- Member 6 -->
+                <div id="member-6" class="bg-white p-6 rounded-lg shadow-md border">
+                    <div class="member-card">
+                        <div class="member-badge">A6</div>
+                        <div class="member-meta">
+                            <h4 class="text-lg font-semibold">Nama Anggota 6</h4>
+                            <small>Peran / NIM / Keterangan singkat</small>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-gray-600">Deskripsi singkat atau kontribusi dalam proyek.</p>
+                </div>
+
+                <!-- Member 7 -->
+                <div id="member-7" class="bg-white p-6 rounded-lg shadow-md border">
+                    <div class="member-card">
+                        <div class="member-badge">A7</div>
+                        <div class="member-meta">
+                            <h4 class="text-lg font-semibold">Nama Anggota 7</h4>
+                            <small>Peran / NIM / Keterangan singkat</small>
+                        </div>
+                    </div>
+                    <p class="mt-3 text-gray-600">Deskripsi singkat atau kontribusi dalam proyek.</p>
+                </div>
+            </div>
+        </section>
+        <!-- end anggota section -->
 
         <section id="introduction" class="scroll-mt-20 space-y-12">
             <div class="text-center">
@@ -256,7 +414,7 @@
             const contentSections = document.querySelectorAll('.content-section');
             const navLinks = document.querySelectorAll('.nav-link');
             const sections = document.querySelectorAll('main section');
-
+            
             function setActiveStep(stepId) {
                 processSteps.forEach(step => {
                     step.classList.remove('active');
@@ -264,7 +422,7 @@
                 contentSections.forEach(content => {
                     content.classList.remove('active');
                 });
-
+    
                 if (stepId) {
                     document.getElementById(`step-${stepId}`).classList.add('active');
                     document.getElementById(`content-${stepId}`).classList.add('active');
@@ -272,14 +430,14 @@
             }
             
             setActiveStep('identify');
-
+    
             processSteps.forEach(step => {
                 step.addEventListener('click', () => {
                     const stepId = step.id.split('-')[1];
                     setActiveStep(stepId);
                 });
             });
-
+    
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -292,7 +450,7 @@
                     }
                 });
             }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
-
+    
             sections.forEach(section => {
                 observer.observe(section);
             });
