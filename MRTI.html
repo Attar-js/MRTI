@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan Interaktif: IT Risk Framework ISACA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Calm Harmony (Beige, Soft Gray, Muted Teal) -->
+    <!-- Application Structure Plan: SPA dengan navigasi sticky di atas untuk akses non-linear ke setiap bagian utama (Pengenalan, Komponen Inti, Studi Kasus, Manfaat, Sumber). Pendekatan ini mengubah presentasi linear menjadi panduan yang dapat dieksplorasi. Bagian 'Proses Manajemen' dibuat interaktif dengan diagram yang dapat diklik untuk menampilkan detail setiap langkah, menjadikannya pusat pembelajaran aplikasi. Struktur ini dipilih untuk meningkatkan keterlibatan pengguna dan memfasilitasi pemahaman konsep-konsep kunci secara mandiri dan tidak berurutan. -->
+    <!-- Visualization & Content Choices: 1. Proses Manajemen Risiko: Info -> Proses siklus 4 langkah. Goal -> Mengorganisir & menjelaskan. Viz -> Diagram interaktif dengan HTML/CSS/JS. Interaction -> Klik pada setiap langkah (Identifikasi, Penilaian, Respons, Pemantauan) akan menampilkan deskripsi mendetail. Justification -> Lebih menarik dan intuitif daripada membaca slide, memvisualisasikan alur proses. Library -> Vanilla JS. 2. Matriks Risiko: Info -> Alat penilaian risiko. Goal -> Menginformasikan. Viz -> Tabel HTML dengan warna latar belakang (heat map). Interaction -> Statis. Justification -> Visualisasi konsep yang efektif dan ringan tanpa memerlukan library chart. Library -> HTML/Tailwind. 3. Opsi Respons Risiko: Info -> 4T (Treat, Transfer, Tolerate, Terminate). Goal -> Menjelaskan. Viz -> Kartu-kartu. Interaction -> Efek hover untuk menampilkan detail. Justification -> Interaksi sederhana untuk menyajikan informasi ringkas. Library -> CSS/JS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #374151;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        .nav-link.active {
+            color: #4338CA;
+            font-weight: 600;
+        }
+        .process-step {
+            transition: all 0.3s ease-in-out;
+        }
+        .process-step.active, .process-step:hover {
+            transform: translateY(-5px);
+            background-color: #EEF2FF;
+            border-color: #6366F1;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .risk-matrix-cell {
+            text-align: center;
+            vertical-align: middle;
+            font-weight: 600;
+            color: white;
+            padding: 0.75rem;
+        }
+        .critical { background-color: #DC2626; }
+        .high { background-color: #F97316; }
+        .medium { background-color: #FACC15; }
+        .low { background-color: #84CC16; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="sticky top-0 bg-white/80 backdrop-blur-md z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-gray-800">IT Risk Framework</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#introduction" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600">Pengenalan</a>
+                        <a href="#framework" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600">Kerangka Kerja</a>
+                        <a href="#case-study" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600">Studi Kasus</a>
+                        <a href="#benefits" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600">Manfaat</a>
+                        <a href="#resources" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600">Sumber</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <section id="introduction" class="scroll-mt-20 space-y-12">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Mengelola Risiko di Era Digital</h2>
+                <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">Panduan interaktif untuk memahami dan menerapkan IT Risk Framework dari ISACA guna membangun ketahanan organisasi.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Apa itu Risiko TI dan Mengapa Penting?</h3>
+                    <p class="text-gray-600">Risiko Teknologi Informasi (TI) adalah potensi ancaman yang dapat mengeksploitasi kerentanan pada aset informasi, yang berujung pada kerugian bisnis. Ini bukan sekadar masalah teknis, melainkan isu strategis yang mempengaruhi keberlangsungan, reputasi, dan profitabilitas perusahaan.</p>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li><b>Melindungi Aset Kritis:</b> Data, reputasi, dan kepercayaan pelanggan.</li>
+                        <li><b>Memastikan Kelangsungan Bisnis:</b> Menjaga operasi tetap berjalan lancar.</li>
+                        <li><b>Mendukung Tujuan Bisnis:</b> Inovasi digital memerlukan fondasi manajemen risiko yang solid.</li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-semibold text-gray-800">Mengenal ISACA</h3>
+                    <p class="text-gray-600">ISACA (Information Systems Audit and Control Association) adalah asosiasi profesional global yang menjadi otoritas dalam tata kelola, kontrol, audit, dan keamanan siber. ISACA mengembangkan kerangka kerja standar industri seperti COBIT dan IT Risk Framework, serta menyediakan sertifikasi terkemuka seperti CRISC, CISA, dan CISM.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 md:my-16 border-gray-200">
+
+        <section id="framework" class="scroll-mt-20 space-y-12">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Komponen Inti Kerangka Kerja</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">IT Risk Framework ISACA dibangun di atas tiga pilar utama yang saling berhubungan. Setiap komponen memainkan peran krusial dalam menciptakan pendekatan manajemen risiko yang holistik dan efektif di seluruh organisasi.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h4 class="text-xl font-semibold text-indigo-700">1. Tata Kelola Risiko (Risk Governance)</h4>
+                    <p class="mt-2 text-gray-600">Sebagai 'otak' dari manajemen risiko, tata kelola menetapkan arahan strategis, kebijakan, dan akuntabilitas dari tingkat pimpinan. Ini memastikan bahwa upaya manajemen risiko sejalan dengan tujuan bisnis dan selera risiko (risk appetite) organisasi.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h4 class="text-xl font-semibold text-indigo-700">2. Proses Manajemen Risiko</h4>
+                    <p class="mt-2 text-gray-600">Merupakan 'mesin' operasional yang menjalankan siklus hidup manajemen risiko secara sistematis. Proses ini mencakup identifikasi, penilaian, respons, dan pemantauan risiko secara berkelanjutan untuk menjaga risiko dalam batas toleransi.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-100">
+                    <h4 class="text-xl font-semibold text-indigo-700">3. Budaya Sadar Risiko (Risk Culture)</h4>
+                    <p class="mt-2 text-gray-600">Fondasi dari semua kontrol. Budaya sadar risiko adalah nilai dan perilaku bersama yang membentuk cara pandang dan tindakan setiap individu terhadap risiko, memastikan bahwa manajemen risiko menjadi tanggung jawab semua orang.</p>
+                </div>
+            </div>
+
+            <div class="pt-8">
+                <h3 class="text-2xl font-semibold text-center text-gray-800 mb-8">Jelajahi Siklus Proses Manajemen Risiko</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div id="step-identify" class="process-step cursor-pointer p-4 border-2 border-gray-200 rounded-lg bg-white shadow-sm">
+                        <span class="text-4xl">🔍</span>
+                        <p class="mt-2 font-semibold text-gray-700">Identifikasi</p>
+                    </div>
+                    <div id="step-assess" class="process-step cursor-pointer p-4 border-2 border-gray-200 rounded-lg bg-white shadow-sm">
+                        <span class="text-4xl">📊</span>
+                        <p class="mt-2 font-semibold text-gray-700">Penilaian</p>
+                    </div>
+                    <div id="step-respond" class="process-step cursor-pointer p-4 border-2 border-gray-200 rounded-lg bg-white shadow-sm">
+                        <span class="text-4xl">🛡️</span>
+                        <p class="mt-2 font-semibold text-gray-700">Respons</p>
+                    </div>
+                    <div id="step-monitor" class="process-step cursor-pointer p-4 border-2 border-gray-200 rounded-lg bg-white shadow-sm">
+                        <span class="text-4xl">📈</span>
+                        <p class="mt-2 font-semibold text-gray-700">Pemantauan</p>
+                    </div>
+                </div>
+
+                <div id="process-content-container" class="mt-8 min-h-[300px]">
+                    <div id="content-identify" class="content-section p-6 bg-indigo-50 rounded-lg border border-indigo-200">
+                        <h4 class="text-xl font-semibold text-gray-800">Tahap 1: Identifikasi Risiko</h4>
+                        <p class="mt-2 text-gray-600">Langkah awal ini berfokus pada pertanyaan "Apa yang bisa salah?". Tujuannya adalah mengumpulkan dan mendokumentasikan semua skenario risiko potensial yang dapat mempengaruhi tujuan organisasi. Sumbernya bisa beragam, mulai dari pengenalan teknologi baru, perubahan proses bisnis, hingga ancaman eksternal. Hasil dari tahap ini adalah sebuah <strong>Risk Register</strong>, yaitu daftar komprehensif dari semua risiko yang telah teridentifikasi.</p>
+                    </div>
+                    <div id="content-assess" class="content-section p-6 bg-indigo-50 rounded-lg border border-indigo-200">
+                        <h4 class="text-xl font-semibold text-gray-800">Tahap 2: Penilaian Risiko</h4>
+                        <p class="mt-2 text-gray-600">Setelah risiko diidentifikasi, tahap ini menjawab "Seberapa besar masalahnya?". Risiko dianalisis berdasarkan <strong>kemungkinan (likelihood)</strong> terjadinya dan <strong>dampak (impact)</strong> jika benar-benar terjadi. Alat bantu yang umum digunakan adalah Matriks Risiko (Risk Matrix) untuk memvisualisasikan dan memprioritaskan risiko, mengkategorikannya menjadi Kritis, Tinggi, Sedang, atau Rendah.</p>
+                        <div class="mt-4 overflow-x-auto">
+                            <table class="w-full max-w-md mx-auto border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th class="border p-2 bg-gray-200">Dampak →</th>
+                                        <th class="border p-2 bg-gray-200 text-xs sm:text-sm">Rendah</th>
+                                        <th class="border p-2 bg-gray-200 text-xs sm:text-sm">Sedang</th>
+                                        <th class="border p-2 bg-gray-200 text-xs sm:text-sm">Tinggi</th>
+                                        <th class="border p-2 bg-gray-200 text-xs sm:text-sm">Kritis</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td class="border p-2 bg-gray-200 text-xs sm:text-sm">Sangat Mungkin</td><td class="risk-matrix-cell medium">Medium</td><td class="risk-matrix-cell high">Tinggi</td><td class="risk-matrix-cell critical">Kritis</td><td class="risk-matrix-cell critical">Kritis</td></tr>
+                                    <tr><td class="border p-2 bg-gray-200 text-xs sm:text-sm">Mungkin</td><td class="risk-matrix-cell low">Rendah</td><td class="risk-matrix-cell medium">Medium</td><td class="risk-matrix-cell high">Tinggi</td><td class="risk-matrix-cell critical">Kritis</td></tr>
+                                    <tr><td class="border p-2 bg-gray-200 text-xs sm:text-sm">Jarang</td><td class="risk-matrix-cell low">Rendah</td><td class="risk-matrix-cell low">Rendah</td><td class="risk-matrix-cell medium">Medium</td><td class="risk-matrix-cell high">Tinggi</td></tr>
+                                    <tr><td class="border p-2 bg-gray-200 text-xs sm:text-sm">Sangat Jarang</td><td class="risk-matrix-cell low">Rendah</td><td class="risk-matrix-cell low">Rendah</td><td class="risk-matrix-cell low">Rendah</td><td class="risk-matrix-cell medium">Medium</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="content-respond" class="content-section p-6 bg-indigo-50 rounded-lg border border-indigo-200">
+                        <h4 class="text-xl font-semibold text-gray-800">Tahap 3: Respons Risiko</h4>
+                        <p class="mt-2 text-gray-600">Berdasarkan prioritas dari tahap penilaian, tahap ini menentukan "Apa yang akan kita lakukan terhadap risiko ini?". Ada empat strategi utama (dikenal sebagai 4T) yang bisa dipilih:</p>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+                            <div class="p-4 bg-white rounded-lg shadow-sm border"><strong>Treat (Mitigasi):</strong> Menerapkan kontrol untuk mengurangi kemungkinan atau dampak.</div>
+                            <div class="p-4 bg-white rounded-lg shadow-sm border"><strong>Transfer (Alihkan):</strong> Memindahkan sebagian atau seluruh risiko ke pihak ketiga, contohnya melalui asuransi.</div>
+                            <div class="p-4 bg-white rounded-lg shadow-sm border"><strong>Tolerate (Terima):</strong> Menerima risiko tanpa tindakan lebih lanjut, biasanya untuk risiko berbiaya rendah.</div>
+                            <div class="p-4 bg-white rounded-lg shadow-sm border"><strong>Terminate (Hindari):</strong> Menghentikan aktivitas yang menjadi sumber risiko.</div>
+                        </div>
+                    </div>
+                     <div id="content-monitor" class="content-section p-6 bg-indigo-50 rounded-lg border border-indigo-200">
+                        <h4 class="text-xl font-semibold text-gray-800">Tahap 4: Pemantauan & Pelaporan</h4>
+                        <p class="mt-2 text-gray-600">Proses manajemen risiko tidak berhenti setelah respons diterapkan. Tahap ini menjawab "Apakah strategi kita berhasil?". Ini melibatkan pemantauan berkelanjutan terhadap efektivitas kontrol yang ada, melacak Indikator Risiko Kunci (Key Risk Indicators - KRIs), dan melaporkan status risiko secara berkala kepada pemangku kepentingan. Tujuannya adalah untuk memastikan bahwa profil risiko organisasi tetap berada dalam batas toleransi yang dapat diterima dan untuk mengidentifikasi risiko baru yang mungkin muncul.</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <hr class="my-12 md:my-16 border-gray-200">
+
+        <section id="case-study" class="scroll-mt-20">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Penerapan dalam Skenario Nyata</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">Mari kita lihat bagaimana kerangka kerja ini diterapkan dalam studi kasus sederhana peluncuran aplikasi mobile banking oleh "PT. Sukses Digital".</p>
+            </div>
+            <div class="mt-10 max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg border border-gray-100 space-y-6">
+                <div>
+                    <span class="text-indigo-600 font-semibold">1. Identifikasi Risiko</span>
+                    <p class="text-gray-600 ml-4">Tim mengidentifikasi risiko utama: kebocoran data nasabah, kegagalan transaksi, dan serangan DDoS saat peluncuran.</p>
+                </div>
+                <div>
+                    <span class="text-indigo-600 font-semibold">2. Penilaian Risiko</span>
+                    <p class="text-gray-600 ml-4">Risiko kebocoran data nasabah dinilai sebagai **Kritis** karena memiliki dampak finansial dan reputasi yang sangat tinggi, dengan kemungkinan terjadi yang sedang.</p>
+                </div>
+                <div>
+                    <span class="text-indigo-600 font-semibold">3. Respons Risiko (Mitigasi)</span>
+                    <p class="text-gray-600 ml-4">PT. Sukses Digital memilih strategi mitigasi dengan menerapkan beberapa kontrol: melakukan *penetration test*, mewajibkan *Multi-Factor Authentication* (MFA), dan mengenkripsi data transaksi secara *end-to-end*.</p>
+                </div>
+                <div>
+                    <span class="text-indigo-600 font-semibold">4. Pemantauan</span>
+                    <p class="text-gray-600 ml-4">Sebuah sistem deteksi anomali dipasang untuk memantau aktivitas login dan transaksi secara *real-time*, memberikan peringatan dini jika ada aktivitas mencurigakan.</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="my-12 md:my-16 border-gray-200">
+
+        <section id="benefits" class="scroll-mt-20">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Manfaat Strategis bagi Organisasi</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">Menerapkan IT Risk Framework secara konsisten bukan hanya tentang menghindari kerugian, tetapi juga menciptakan nilai dan keunggulan kompetitif.</p>
+            </div>
+            <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 bg-white rounded-lg shadow-sm border">Pengambilan keputusan investasi TI menjadi lebih baik dan berbasis data.</div>
+                <div class="p-6 bg-white rounded-lg shadow-sm border">Meningkatkan kepercayaan pelanggan dan mitra bisnis.</div>
+                <div class="p-6 bg-white rounded-lg shadow-sm border">Alokasi sumber daya dan anggaran keamanan menjadi lebih efisien.</div>
+                <div class="p-6 bg-white rounded-lg shadow-sm border">Mengurangi kejutan tak terduga dan potensi kerugian finansial.</div>
+                <div class="p-6 bg-white rounded-lg shadow-sm border">Membantu pemenuhan persyaratan kepatuhan dan regulasi (compliance).</div>
+                <div class="p-6 bg-white rounded-lg shadow-sm border">Mendukung inovasi yang aman dan terkelola dengan baik.</div>
+            </div>
+        </section>
+
+        <hr class="my-12 md:my-16 border-gray-200">
+
+        <section id="resources" class="scroll-mt-20">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Sumber Informasi & Referensi</h2>
+                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600">Untuk pendalaman lebih lanjut, berikut adalah beberapa sumber daya resmi dari ISACA.</p>
+            </div>
+            <div class="mt-10 max-w-3xl mx-auto space-y-4 text-center">
+                <p class="text-gray-700"><strong>Publikasi Utama:</strong> ISACA, *The Risk IT Framework®, 2nd Edition* & *COBIT® 2019 Framework*.</p>
+                <p class="text-gray-700"><strong>Situs Web Resmi:</strong> <a href="https://www.isaca.org" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline">www.isaca.org</a></p>
+                <p class="text-gray-700"><strong>Sertifikasi Terkait:</strong> CRISC® (Certified in Risk and Information Systems Control).</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-100">
+        <div class="container mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            <p>&copy; 2025 Panduan Interaktif. Dibuat berdasarkan kerangka kerja ISACA.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const processSteps = document.querySelectorAll('.process-step');
+            const contentSections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+
+            function setActiveStep(stepId) {
+                processSteps.forEach(step => {
+                    step.classList.remove('active');
+                });
+                contentSections.forEach(content => {
+                    content.classList.remove('active');
+                });
+
+                if (stepId) {
+                    document.getElementById(`step-${stepId}`).classList.add('active');
+                    document.getElementById(`content-${stepId}`).classList.add('active');
+                }
+            }
+            
+            setActiveStep('identify');
+
+            processSteps.forEach(step => {
+                step.addEventListener('click', () => {
+                    const stepId = step.id.split('-')[1];
+                    setActiveStep(stepId);
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
